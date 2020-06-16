@@ -8,6 +8,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     var destinationLocation: CLLocationCoordinate2D?
     var currentLocation: CLLocationCoordinate2D?
+    var locations = UserDefaults.standard.value(forKey: "places") as! [[String: Any]]
     
     //MARK: - Variables
     fileprivate let locationManager: CLLocationManager = {
@@ -51,6 +52,10 @@ class HomeViewController: UIViewController {
         mapView.removeOverlays(mapView.overlays)
         let touchPoint: CGPoint = gestureRecognizer.location(in: mapView)
         let newCoordinate: CLLocationCoordinate2D = mapView.convert(touchPoint, toCoordinateFrom: mapView)
+        self.locations.append(["name": "Favourite Place", "lat": newCoordinate.latitude, "long": newCoordinate.longitude])
+        UserDefaults.standard.setValue(self.locations, forKey: "places")
+        UserDefaults.standard.synchronize()
+        self.navigationController?.popViewController(animated: true)
         addAnnotationOnLocation(pointedCoordinate: newCoordinate)
     }
     
