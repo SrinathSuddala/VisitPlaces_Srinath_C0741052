@@ -12,6 +12,7 @@ class PlacesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.delegate = self
         tableView.dataSource = self
         addPlaces()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addTapped))
         // Do any additional setup after loading the view.
     }
     
@@ -32,6 +33,9 @@ class PlacesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         self.places = placeList as! [[String : Any]]
         tableView.reloadData()
+    }
+    
+    @objc func addTapped() {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
