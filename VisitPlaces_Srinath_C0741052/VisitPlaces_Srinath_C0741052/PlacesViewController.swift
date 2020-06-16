@@ -6,6 +6,7 @@ class PlacesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Places"
         // Do any additional setup after loading the view.
     }
 
