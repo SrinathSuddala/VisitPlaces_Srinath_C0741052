@@ -7,8 +7,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        setNavigationBar()
         // Override point for customization after application launch.
         return true
+    }
+    
+    func setNavigationBar() {
+        UINavigationBar.appearance().barTintColor = UIColor(red: 230/255, green: 138/255, blue: 0, alpha: 1)
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
+        UINavigationBar.appearance().shadowImage = UIImage()
     }
 
     // MARK: UISceneSession Lifecycle
