@@ -54,5 +54,52 @@
             </objects>
             <point key="canvasLocation" x="-352" y="29"/>
         </scene>
+        <!--Home View Controller-->
+        <scene sceneID="svk-KG-ewg">
+            <objects>
+                <viewController storyboardIdentifier="HomeViewController" id="k1K-RO-b74" customClass="HomeViewController" customModule="VisitPlaces_Srinath_C0741052" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Nkq-Fv-OL1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BV3-ft-PuP">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZRa-5A-o9D">
+                                <rect key="frame" x="334" y="708" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="fqm-1Y-baI"/>
+                                    <constraint firstAttribute="width" constant="50" id="ybr-zs-UXz"/>
+                                </constraints>
+                                <state key="normal" image="location"/>
+                                <connections>
+                                    <action selector="navigateMeButtonTapped" destination="k1K-RO-b74" eventType="touchUpInside" id="7dI-5H-Niy"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="ZRa-5A-o9D" secondAttribute="bottom" constant="50" id="5bC-Df-JaK"/>
+                            <constraint firstItem="BV3-ft-PuP" firstAttribute="leading" secondItem="bMP-W5-NCx" secondAttribute="leading" id="FFI-lj-di2"/>
+                            <constraint firstAttribute="trailing" secondItem="ZRa-5A-o9D" secondAttribute="trailing" constant="30" id="G2L-wB-g2b"/>
+                            <constraint firstItem="BV3-ft-PuP" firstAttribute="top" secondItem="bMP-W5-NCx" secondAttribute="top" id="Vv4-bk-hf3"/>
+                            <constraint firstItem="bMP-W5-NCx" firstAttribute="trailing" secondItem="BV3-ft-PuP" secondAttribute="trailing" id="jgi-xR-ecR"/>
+                            <constraint firstItem="bMP-W5-NCx" firstAttribute="bottom" secondItem="BV3-ft-PuP" secondAttribute="bottom" id="s4y-jV-Prg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bMP-W5-NCx"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="mapView" destination="BV3-ft-PuP" id="zCh-Td-YSr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QPJ-mC-FZj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="959" y="17"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="location" width="128" height="128"/>
+    </resources>
 </document>

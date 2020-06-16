@@ -13,6 +13,7 @@
 		AC5D0672249850CB009829F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC5D0671249850CB009829F9 /* Assets.xcassets */; };
 		AC5D0675249850CB009829F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC5D0673249850CB009829F9 /* LaunchScreen.storyboard */; };
 		AC5D067D249851BC009829F9 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5D067C249851BC009829F9 /* PlacesViewController.swift */; };
+		AC5D067F249880C5009829F9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5D067E249880C5009829F9 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		AC5D0674249850CB009829F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AC5D0676249850CB009829F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC5D067C249851BC009829F9 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
+		AC5D067E249880C5009829F9 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				AC5D0668249850C9009829F9 /* AppDelegate.swift */,
 				AC5D066A249850C9009829F9 /* SceneDelegate.swift */,
 				AC5D067C249851BC009829F9 /* PlacesViewController.swift */,
+				AC5D067E249880C5009829F9 /* HomeViewController.swift */,
 				AC5D066E249850C9009829F9 /* Main.storyboard */,
 				AC5D0671249850CB009829F9 /* Assets.xcassets */,
 				AC5D0673249850CB009829F9 /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 				AC5D067D249851BC009829F9 /* PlacesViewController.swift in Sources */,
 				AC5D0669249850C9009829F9 /* AppDelegate.swift in Sources */,
 				AC5D066B249850C9009829F9 /* SceneDelegate.swift in Sources */,
+				AC5D067F249880C5009829F9 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
