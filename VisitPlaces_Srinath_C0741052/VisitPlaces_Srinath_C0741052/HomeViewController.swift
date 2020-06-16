@@ -52,11 +52,32 @@ class HomeViewController: UIViewController {
         mapView.removeOverlays(mapView.overlays)
         let touchPoint: CGPoint = gestureRecognizer.location(in: mapView)
         let newCoordinate: CLLocationCoordinate2D = mapView.convert(touchPoint, toCoordinateFrom: mapView)
-        self.locations.append(["name": "Favourite Place", "lat": newCoordinate.latitude, "long": newCoordinate.longitude])
-        UserDefaults.standard.setValue(self.locations, forKey: "places")
-        UserDefaults.standard.synchronize()
-        self.navigationController?.popViewController(animated: true)
+        lookUpCurrentLocation(with: newCoordinate) { placeMark in
+            self.locations.append(["name": placeMark?.locality ?? "Favourite Place", "lat": newCoordinate.latitude, "long": newCoordinate.longitude])
+            UserDefaults.standard.setValue(self.locations, forKey: "places")
+            UserDefaults.standard.synchronize()
+            self.navigationController?.popViewController(animated: true)
+        }
         addAnnotationOnLocation(pointedCoordinate: newCoordinate)
+    }
+    
+    func lookUpCurrentLocation(with location: CLLocationCoordinate2D, completionHandler: @escaping (CLPlacemark?)
+        -> Void ) {
+        // Use the last reported location.
+        let geocoder = CLGeocoder()
+        
+        // Look up the location and pass it to the completion handler
+        geocoder.reverseGeocodeLocation(CLLocation(latitude: location.latitude, longitude: location.longitude),
+                                        completionHandler: { (placemarks, error) in
+                                            if error == nil {
+                                                let firstLocation = placemarks?[0]
+                                                completionHandler(firstLocation)
+                                            }
+                                            else {
+                                                // An error occurred during geocoding.
+                                                completionHandler(nil)
+                                            }
+        })
     }
     
     func addAnnotationOnLocation(pointedCoordinate: CLLocationCoordinate2D) {
