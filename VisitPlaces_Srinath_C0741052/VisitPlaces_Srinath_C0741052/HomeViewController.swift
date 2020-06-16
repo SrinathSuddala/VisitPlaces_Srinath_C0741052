@@ -167,6 +167,20 @@ extension HomeViewController: MKMapViewDelegate {
         }
         return MKOverlayRenderer()
     }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+       let identifier = "CustomerAnnotationView"
+       var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+
+       if annotationView == nil {
+           annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+           annotationView?.canShowCallout = true
+           annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+       } else {
+           annotationView?.annotation = annotation
+       }
+       return annotationView
+    }
 }
 
 

@@ -11,9 +11,14 @@ class PlacesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "Cell")
         tableView.delegate = self
         tableView.dataSource = self
-        addPlaces()
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addTapped))
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        addPlaces()
     }
     
     func addPlaces() {
