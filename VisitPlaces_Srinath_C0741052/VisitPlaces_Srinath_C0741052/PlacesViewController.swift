@@ -16,17 +16,22 @@ class PlacesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func addPlaces() {
-        
-        let staticPlaces = [["name": "Alberta" , "lat": 52.268112, "long": -113.0],
-                            ["name": "Vancover" , "lat": 55.000000, "long": -115.000000],
-                            ["name": "British Columbia" , "lat": 53.7267, "long": -127.6476],
-                            ["name": "Montreal" , "lat": 45.5017, "long": -73.5673],
-                            ["name": "Quebec" , "lat": 46.8139, "long": -71.2080]
-        ]
-        
-        self.places = staticPlaces
+        guard let placeList =  UserDefaults.standard.value(forKey: "places") else {
+            let staticPlaces = [["name": "Alberta" , "lat": 52.268112, "long": -113.0],
+                          ["name": "Vancover" , "lat": 55.000000, "long": -115.000000],
+                          ["name": "British Columbia" , "lat": 53.7267, "long": -127.6476],
+                          ["name": "Montreal" , "lat": 45.5017, "long": -73.5673],
+                          ["name": "Quebec" , "lat": 46.8139, "long": -71.2080]
+            ]
+            UserDefaults.standard.set(staticPlaces, forKey: "places")
+            UserDefaults.standard.synchronize()
+            self.places = staticPlaces
+            tableView.reloadData()
+            return
+            
+        }
+        self.places = placeList as! [[String : Any]]
         tableView.reloadData()
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
