@@ -9,6 +9,7 @@ class HomeViewController: UIViewController {
     var destinationLocation: CLLocationCoordinate2D?
     var currentLocation: CLLocationCoordinate2D?
     var locations = UserDefaults.standard.value(forKey: "places") as! [[String: Any]]
+    var selectedLocation: [String: Any]?
     
     //MARK: - Variables
     fileprivate let locationManager: CLLocationManager = {
@@ -28,12 +29,18 @@ class HomeViewController: UIViewController {
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleLongPress(gestureRecognizer:)))
         gestureRecognizer.numberOfTapsRequired = 2
         mapView.addGestureRecognizer(gestureRecognizer)
-        mapView.isZoomEnabled = false
+        mapView.isZoomEnabled = selectedLocation == nil ? false : true
         mapView.showsUserLocation = true
         mapView.showsCompass = true
         mapView.showsScale = true
         mapView.delegate = self
         currentLocationSetUp()
+        showSelectedLocationDetails()
+    }
+    
+    func showSelectedLocationDetails() {
+        guard let location = selectedLocation else { return }
+        addAnnotationOnLocation(pointedCoordinate: CLLocationCoordinate2D(latitude: location["lat"] as! CLLocationDegrees, longitude: location["long"] as! CLLocationDegrees), title: location["name"] as? String)
     }
     
     
@@ -53,12 +60,12 @@ class HomeViewController: UIViewController {
         let touchPoint: CGPoint = gestureRecognizer.location(in: mapView)
         let newCoordinate: CLLocationCoordinate2D = mapView.convert(touchPoint, toCoordinateFrom: mapView)
         lookUpCurrentLocation(with: newCoordinate) { placeMark in
-            self.locations.append(["name": placeMark?.locality ?? "Favourite Place", "lat": newCoordinate.latitude, "long": newCoordinate.longitude])
+            self.locations.append(["name": placeMark?.subLocality ?? "Favourite Place", "lat": newCoordinate.latitude, "long": newCoordinate.longitude])
             UserDefaults.standard.setValue(self.locations, forKey: "places")
             UserDefaults.standard.synchronize()
             self.navigationController?.popViewController(animated: true)
         }
-        addAnnotationOnLocation(pointedCoordinate: newCoordinate)
+        addAnnotationOnLocation(pointedCoordinate: newCoordinate, title: nil)
     }
     
     func lookUpCurrentLocation(with location: CLLocationCoordinate2D, completionHandler: @escaping (CLPlacemark?)
@@ -80,7 +87,7 @@ class HomeViewController: UIViewController {
         })
     }
     
-    func addAnnotationOnLocation(pointedCoordinate: CLLocationCoordinate2D) {
+    func addAnnotationOnLocation(pointedCoordinate: CLLocationCoordinate2D, title: String?) {
         destinationLocation = pointedCoordinate
         let annotation = MKPointAnnotation()
         annotation.coordinate = pointedCoordinate

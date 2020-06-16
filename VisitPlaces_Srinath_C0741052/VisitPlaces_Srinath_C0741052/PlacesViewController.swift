@@ -56,6 +56,13 @@ class PlacesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.selectionStyle = .none
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        viewController.selectedLocation = places[indexPath.row]
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
 
 }
 
