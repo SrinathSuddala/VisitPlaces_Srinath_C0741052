@@ -36,6 +36,9 @@ class PlacesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @objc func addTapped() {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
